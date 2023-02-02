@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { css } from 'styled-components';
 import { navLinks } from '@config';
 import { loaderDelay } from '@utils';
-import { useScrollDirection, usePrefersReducedMotion } from '@hooks';
+import { usePrefersReducedMotion } from '@hooks';
 import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
 
@@ -17,11 +17,11 @@ const StyledHeader = styled.header`
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: rgba(10, 25, 47, 0.85);
+  /* background-color: rgba(10, 25, 47, 0.85); */
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   transition: var(--transition);
 
   @media (max-width: 1080px) {
@@ -38,8 +38,8 @@ const StyledHeader = styled.header`
       css`
         height: var(--nav-scroll-height);
         transform: translateY(0px);
-        background-color: rgba(10, 25, 47, 0.85);
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
+        /* background-color: rgba(10, 25, 47, 0.85); */
+        /* box-shadow: 0 10px 30px -10px var(--navy-shadow); */
       `};
 
     ${props =>
@@ -129,13 +129,13 @@ const StyledLinks = styled.div`
 
 const Nav = ({ isHome }) => {
   const [isMounted, setIsMounted] = useState(!isHome);
-  const scrollDirection = useScrollDirection('down');
-  const [scrolledToTop, setScrolledToTop] = useState(true);
+  // const scrollDirection = useScrollDirection('down');
+  // const [scrolledToTop, setScrolledToTop] = useState(true);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const handleScroll = () => {
-    setScrolledToTop(window.pageYOffset < 50);
-  };
+  // const handleScroll = () => {
+  //   setScrolledToTop(window.pageYOffset < 50);
+  // };
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -146,11 +146,11 @@ const Nav = ({ isHome }) => {
       setIsMounted(true);
     }, 100);
 
-    window.addEventListener('scroll', handleScroll);
+    // window.addEventListener('scroll', handleScroll);
 
     return () => {
       clearTimeout(timeout);
-      window.removeEventListener('scroll', handleScroll);
+      // window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -179,7 +179,7 @@ const Nav = ({ isHome }) => {
   );
 
   return (
-    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop}>
+    <StyledHeader>
       <StyledNav>
         {prefersReducedMotion ? (
           <>
